@@ -662,8 +662,6 @@ a:hover {
 
     .resume-section {
         margin-bottom: 25px;
-        page-break-inside: avoid;
-        break-inside: avoid;
     }
 
     .section-title {
@@ -672,6 +670,8 @@ a:hover {
         padding-bottom: 4px;
         margin-bottom: 12px;
         color: #000000;
+        page-break-after: avoid;
+        break-after: avoid;
     }
 
     .title-icon {
