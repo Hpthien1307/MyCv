@@ -694,8 +694,6 @@ a:hover {
     .timeline-item {
         padding-left: 0;
         margin-bottom: 20px;
-        page-break-inside: avoid;
-        break-inside: avoid;
     }
 
     .timeline-item::before {
@@ -774,8 +772,6 @@ a:hover {
         background-color: transparent;
         padding: 0;
         border: none;
-        page-break-inside: avoid;
-        break-inside: avoid;
     }
 
     .skill-category {
@@ -796,8 +792,6 @@ a:hover {
         background-color: transparent;
         padding: 0;
         border: none;
-        page-break-inside: avoid;
-        break-inside: avoid;
     }
 
     .project-header {
