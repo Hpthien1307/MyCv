@@ -60,6 +60,7 @@ a:hover {
     margin-bottom: 20px;
     display: flex;
     justify-content: flex-end;
+    gap: 12px;
 }
 
 .btn-print {
@@ -86,6 +87,37 @@ a:hover {
 }
 
 .btn-print .icon {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.btn-lang:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background-color: var(--accent-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+.btn-lang .icon {
     width: 18px;
     height: 18px;
 }
