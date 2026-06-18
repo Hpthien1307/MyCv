@@ -127,7 +127,7 @@ a:hover {
    ========================================================================== */
 .resume-container {
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     background-color: var(--bg-card);
     border-radius: 16px;
     box-shadow: var(--shadow-lg);
