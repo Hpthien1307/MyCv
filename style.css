@@ -59,7 +59,7 @@ a:hover {
    ========================================================================== */
 .controls-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
   margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
@@ -126,98 +126,62 @@ a:hover {
 }
 
 /* ==========================================================================
-   RESUME CONTAINER & LAYOUT
+   RESUME CONTAINER & 2-COLUMN LAYOUT
    ========================================================================== */
 .resume-container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   background-color: var(--bg-card);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow-lg);
-  padding: 50px;
+  padding: 40px;
   border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
 }
 
-/* Header Styling */
-.resume-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 35px;
-  margin-bottom: 40px;
-}
-
-.header-main {
-  flex: 1;
-}
-
-.candidate-name {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  line-height: 1.1;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
-
-.candidate-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 25px;
-}
-
-.contact-grid {
+.resume-layout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px 20px;
+  grid-template-columns: 310px 1fr;
+  gap: 40px;
+  align-items: start;
 }
 
-.contact-item {
+/* ==========================================================================
+   SIDEBAR STYLING (Left Column)
+   ========================================================================== */
+.resume-sidebar {
+  background-color: var(--bg-main);
+  border-radius: 16px;
+  padding: 30px 24px;
+  border: 1px solid var(--border-color);
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.95rem;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.contact-item.full-width {
-  grid-column: span 2;
-}
-
-.contact-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--accent-color);
-  flex-shrink: 0;
-}
-
-.contact-item strong {
-  color: var(--text-dark);
-  margin-right: 4px;
-}
-
-/* Avatar Styling */
-.header-avatar {
-  flex-shrink: 0;
+.sidebar-avatar {
+  display: flex;
+  justify-content: center;
 }
 
 .avatar-wrapper {
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid var(--accent-color);
+  border: 4px solid var(--accent-color);
   box-shadow: var(--shadow-md);
   background-color: var(--accent-light);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.avatar-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-lg);
 }
 
 .avatar-wrapper img {
@@ -232,25 +196,174 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+}
+
+.avatar-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-header {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.candidate-name {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.candidate-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+/* Sidebar Section Titles */
+.sidebar-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-color);
+  letter-spacing: 0.5px;
+}
+
+.sidebar-section-title .title-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  width: 20px;
+  height: 20px;
+}
+
+/* Contact List in Sidebar */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+}
+
+.contact-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-color);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  word-break: break-word;
+}
+
+.contact-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 1px;
+}
+
+.contact-value {
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+a.contact-value {
+  color: var(--accent-color);
+  transition: var(--transition-smooth);
+}
+
+a.contact-value:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Sidebar Skills */
+.sidebar-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sidebar-skills .skill-card {
+  background-color: var(--bg-card);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+.sidebar-skills .skill-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.sidebar-skills .skill-category {
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--accent-color);
-  background-color: var(--accent-light);
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+}
+
+.sidebar-skills .skill-details {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.sidebar-skills .skill-note {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-style: italic;
 }
 
 /* ==========================================================================
-   RESUME CONTENT SECTIONS
+   MAIN CONTENT STYLING (Right Column)
    ========================================================================== */
-.resume-section {
-  margin-bottom: 40px;
+.resume-main {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
 }
 
-.resume-section:last-of-type {
-  margin-bottom: 20px;
+.resume-section {
+  margin-bottom: 0;
 }
 
 .section-title {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text-dark);
   text-transform: uppercase;
@@ -272,12 +385,20 @@ a:hover {
 }
 
 .section-content {
-  padding-left: 34px;
+  padding-left: 10px;
+}
+
+.objective-box {
+  background-color: var(--accent-light);
+  border-left: 4px solid var(--accent-color);
+  padding: 20px 24px;
+  border-radius: 0 12px 12px 0;
 }
 
 .summary-text {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   color: var(--text-main);
+  line-height: 1.65;
   text-align: justify;
 }
 
@@ -285,11 +406,12 @@ a:hover {
 .timeline {
   position: relative;
   border-left: 2px solid var(--border-color);
+  padding-left: 20px;
 }
 
 .timeline-item {
   position: relative;
-  padding-left: 24px;
+  padding-left: 14px;
   margin-bottom: 35px;
 }
 
@@ -300,7 +422,7 @@ a:hover {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -7px;
+  left: -27px;
   top: 5px;
   width: 12px;
   height: 12px;
@@ -312,7 +434,7 @@ a:hover {
 
 .timeline-item:hover::before {
   background-color: var(--accent-color);
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
 .timeline-meta {
@@ -426,85 +548,6 @@ a:hover {
   color: var(--text-dark);
 }
 
-/* Skills Cards Layout */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.skill-card {
-  background-color: var(--bg-main);
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  transition: var(--transition-smooth);
-}
-
-.skill-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-color);
-}
-
-.skill-category {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 12px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 6px;
-}
-
-.skill-card ul {
-  list-style-type: none;
-}
-
-.skill-details {
-  font-size: 0.95rem;
-  color: var(--text-main);
-  line-height: 1.6;
-}
-
-.skill-note {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-top: 6px;
-  font-style: italic;
-}
-
-.skill-card li {
-  font-size: 0.95rem;
-  margin-bottom: 10px;
-  position: relative;
-  padding-left: 15px;
-}
-
-.skill-card li:last-child {
-  margin-bottom: 0;
-}
-
-.skill-card li::before {
-  content: "•";
-  color: var(--accent-color);
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-/* Footer */
-.resume-footer {
-  text-align: center;
-  border-top: 1px solid var(--border-color);
-  padding-top: 20px;
-  margin-top: 40px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
 /* Project Cards */
 .project-card {
   background-color: var(--bg-main);
@@ -582,36 +625,40 @@ a:hover {
   color: var(--text-main);
 }
 
+/* Footer */
+.resume-footer {
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+  margin-top: 40px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
 /* ==========================================================================
    RESPONSIVE DESIGN (Screen)
    ========================================================================== */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   body {
     padding: 20px 10px;
   }
 
+  .controls-container {
+    max-width: 100%;
+  }
+
   .resume-container {
-    padding: 25px 20px;
+    padding: 24px 18px;
+    border-radius: 12px;
   }
 
-  .resume-header {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 20px;
-    padding-bottom: 25px;
-  }
-
-  .candidate-name {
-    font-size: 2.2rem;
-  }
-
-  .contact-grid {
+  .resume-layout {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 30px;
   }
 
-  .contact-item.full-width {
-    grid-column: span 1;
+  .resume-sidebar {
+    padding: 24px 18px;
   }
 
   .section-content {
@@ -620,6 +667,7 @@ a:hover {
 
   .timeline {
     border-left: none;
+    padding-left: 0;
   }
 
   .timeline-item {
@@ -636,20 +684,15 @@ a:hover {
     gap: 6px;
     margin-bottom: 10px;
   }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ==========================================================================
    PRINT STYLES (Cmd + P Optimization)
    ========================================================================== */
 @media print {
-  /* Reset layout for physical paper */
   @page {
     size: A4;
-    margin: 15mm 15mm 15mm 15mm;
+    margin: 12mm 12mm 12mm 12mm;
   }
 
   body {
@@ -658,7 +701,7 @@ a:hover {
     padding: 0;
     margin: 0;
     width: 100%;
-    font-size: 10pt; /* Optimal print font size */
+    font-size: 9.5pt;
   }
 
   .no-print {
@@ -674,57 +717,198 @@ a:hover {
     max-width: 100%;
   }
 
-  .resume-header {
-    border-bottom: 1.5pt solid #000000;
-    padding-bottom: 20px;
-    margin-bottom: 25px;
+  .resume-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
   }
 
-  .candidate-name {
-    font-size: 24pt;
-    color: #000000;
+  .resume-sidebar {
+    background-color: #f8fafc !important;
+    border-radius: 14px !important;
+    padding: 20px 16px !important;
+    border: 1px solid #e2e8f0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
-  .candidate-title {
-    font-size: 13pt;
-    color: #333333;
-    margin-bottom: 15px;
-  }
-
-  .contact-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px 15px;
-  }
-
-  .contact-item {
-    font-size: 9pt;
+  .sidebar-avatar {
+    display: flex !important;
+    justify-content: center !important;
   }
 
   .avatar-wrapper {
-    width: 100px;
-    height: 100px;
-    border: 2pt solid #000000;
-    /* Ensure background graphics prints if browser settings allow */
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+    width: 115px !important;
+    height: 115px !important;
+    border-radius: 50% !important;
+    border: 3px solid #0f766e !important;
+    background-color: #f0fdfa !important;
+    box-shadow: none !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
-  .resume-section {
-    margin-bottom: 25px;
+  .sidebar-header {
+    text-align: center !important;
+    padding-bottom: 14px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  .candidate-name {
+    font-size: 17pt !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    line-height: 1.15 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .candidate-title {
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    color: #0f766e !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .sidebar-section-title {
+    font-size: 10pt !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    text-transform: uppercase !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 6px !important;
+    border-bottom: 2px solid #0f766e !important;
+    letter-spacing: 0.5px !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .sidebar-section-title .title-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 16px !important;
+    height: 16px !important;
+    color: #0f766e !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .contact-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .contact-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    font-size: 8.2pt !important;
+  }
+
+  .contact-icon {
+    width: 14px !important;
+    height: 14px !important;
+    color: #0f766e !important;
+    flex-shrink: 0 !important;
+    margin-top: 2px !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .contact-label {
+    font-size: 6.8pt !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: #64748b !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 1px !important;
+  }
+
+  .contact-value {
+    color: #0f172a !important;
+    font-weight: 500 !important;
+    font-size: 8.2pt !important;
+  }
+
+  a.contact-value {
+    color: #0f766e !important;
+  }
+
+  .sidebar-skills {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .sidebar-skills .skill-card {
+    background-color: #ffffff !important;
+    padding: 10px 12px !important;
+    border-radius: 8px !important;
+    border: 1px solid #e2e8f0 !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .sidebar-skills .skill-category {
+    font-size: 8.8pt !important;
+    font-weight: 700 !important;
+    color: #0f766e !important;
+    margin-bottom: 4px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding-bottom: 3px !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .sidebar-skills .skill-details {
+    font-size: 7.8pt !important;
+    color: #334155 !important;
+    line-height: 1.4 !important;
+  }
+
+  .sidebar-skills .skill-note {
+    display: block !important;
+    font-size: 7.2pt !important;
+    color: #64748b !important;
+    margin-top: 4px !important;
+    font-style: italic !important;
+  }
+
+  .resume-main {
+    gap: 20px;
+  }
+
+  .objective-box {
+    background-color: #f0fdfa !important;
+    border-left: 4px solid #0f766e !important;
+    padding: 14px 18px !important;
+    border-radius: 0 8px 8px 0 !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .section-title {
-    font-size: 12pt;
-    border-bottom: 1.5pt solid #000000;
+    font-size: 11.5pt;
+    border-bottom: 1.5pt solid #0f766e;
     padding-bottom: 4px;
-    margin-bottom: 12px;
-    color: #000000;
+    margin-bottom: 10px;
+    color: #0f172a;
     page-break-after: avoid;
     break-after: avoid;
   }
 
   .title-icon {
-    display: none; /* Hide SVG icons in print to clean up look */
+    display: none;
   }
 
   .section-content {
@@ -732,17 +916,18 @@ a:hover {
   }
 
   .summary-text {
-    font-size: 9.5pt;
+    font-size: 9pt;
+    line-height: 1.6;
   }
 
-  /* Print Timeline Adjustment */
   .timeline {
     border-left: none;
+    padding-left: 0;
   }
 
   .timeline-item {
     padding-left: 0;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .timeline-item::before {
@@ -754,36 +939,39 @@ a:hover {
   }
 
   .timeline-date {
-    background-color: transparent;
-    border: 1px solid #000000;
-    color: #000000;
-    font-size: 8.5pt;
+    background-color: #f0fdfa !important;
+    color: #0f766e !important;
+    border: none;
+    font-size: 8pt;
     font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 4px;
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+    padding: 3px 8px;
+    border-radius: 12px;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .company-name {
-    font-size: 11pt;
+    font-size: 10.5pt;
   }
 
   .job-role {
-    font-size: 10.5pt;
-    margin-bottom: 6px;
+    font-size: 10pt;
+    margin-bottom: 4px;
   }
 
   .project-categories-container {
-    background-color: transparent;
-    padding: 0;
-    border: none;
-    margin-bottom: 10px;
+    background-color: #f8fafc !important;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 8px;
     gap: 4px;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .project-categories-container p {
-    font-size: 9pt;
+    font-size: 8.5pt;
     margin-bottom: 2px;
   }
 
@@ -794,9 +982,9 @@ a:hover {
   }
 
   .project-links {
-    gap: 6px 12px;
-    margin-bottom: 8px;
-    padding-bottom: 6px;
+    gap: 4px 10px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
   }
 
   .project-links li::before {
@@ -804,100 +992,66 @@ a:hover {
   }
 
   .tech-stack {
-    background-color: transparent;
-    border: 1px solid #e2e8f0;
-    padding: 4px 8px;
-    font-size: 8.5pt;
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .skill-card {
-    background-color: transparent;
-    padding: 0;
-    border: none;
-  }
-
-  .skill-category {
-    font-size: 10.5pt;
-    margin-bottom: 6px;
-    border-bottom: 0.5pt solid #000000;
-    padding-bottom: 2px;
-    color: #000000;
-  }
-
-  .skill-card li {
-    font-size: 9pt;
-    margin-bottom: 6px;
-  }
-
-  .skill-details {
-    font-size: 9pt;
-    line-height: 1.4;
-    color: #333333;
-  }
-
-  .skill-note {
-    display: block;
+    background-color: #f8fafc !important;
+    border-left: 3px solid #0f766e !important;
+    padding: 6px 10px;
     font-size: 8pt;
-    color: #666666;
-    margin-top: 4px;
-    font-style: italic;
+    border-radius: 4px;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
-  /* Project print styles */
   .project-card {
-    background-color: transparent;
-    padding: 0;
-    border: none;
+    background-color: #f8fafc !important;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 15px;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .project-header {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   .project-name {
-    font-size: 11pt;
+    font-size: 10.5pt;
   }
 
   .btn-project-link {
-    background-color: transparent;
-    color: #000000;
-    border: 1px solid #000000;
-    padding: 2px 6px;
-    font-size: 8pt;
+    background-color: #0f766e !important;
+    color: #ffffff !important;
+    border: none;
+    padding: 3px 8px;
+    font-size: 7.5pt;
     border-radius: 4px;
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .project-overview {
-    font-size: 9.5pt;
-    margin-bottom: 8px;
+    font-size: 8.5pt;
+    margin-bottom: 6px;
   }
 
   .project-features {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   .project-features p {
-    font-size: 9.5pt;
-    margin-bottom: 4px;
+    font-size: 8.5pt;
+    margin-bottom: 2px;
   }
 
   .project-features li {
-    font-size: 9pt;
-    margin-bottom: 4px;
+    font-size: 8pt;
+    margin-bottom: 2px;
   }
 
   .resume-footer {
-    margin-top: 20px;
-    padding-top: 10px;
-    font-size: 8pt;
+    margin-top: 15px;
+    padding-top: 8px;
+    font-size: 7.5pt;
   }
 }
