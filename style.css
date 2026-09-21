@@ -11,14 +11,11 @@
   --border-color: #e2e8f0; /* Light grey borders */
   --bg-main: #f8fafc; /* Light slate canvas background */
   --bg-card: #ffffff; /* Crisp white card background */
-  --font-primary:
-    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-primary: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
-  --shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg:
-    0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
 }
 
 /* ==========================================================================
@@ -196,12 +193,13 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
 }
 
 .avatar-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 120%;
+  height: 120%;
+  object-fit: contain;
 }
 
 .sidebar-header {
@@ -542,9 +540,6 @@ a.contact-value:hover {
 .tech-stack {
   font-size: 0.9rem;
   background-color: var(--bg-main);
-  padding: 8px 12px;
-  border-radius: 6px;
-  border-left: 3px solid var(--accent-color);
   color: var(--text-dark);
 }
 
