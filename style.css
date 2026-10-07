@@ -538,9 +538,10 @@ a.contact-value:hover {
 }
 
 .tech-stack {
-  font-size: 0.9rem;
   background-color: var(--bg-main);
   color: var(--text-dark);
+  border-left: 3px solid #0f766e !important;
+  padding-left: 10px;
 }
 
 /* Project Cards */
@@ -600,6 +601,22 @@ a.contact-value:hover {
 
 .project-features {
   margin-bottom: 15px;
+}
+
+strong {
+  color: black;
+}
+
+.project-account {
+  display: flex;
+  gap: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.project-account-item {
+  flex: 1;
 }
 
 .project-features p {
