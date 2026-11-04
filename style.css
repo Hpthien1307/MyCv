@@ -1,1069 +1,667 @@
 /* ==========================================================================
-   DESIGN SYSTEM & VARIABLES
+   CV - Phúc Thiện
+   Nguyên tắc: HR đọc được 3 thứ trong 6 giây đầu: ai - level nào - liên hệ thế nào.
    ========================================================================== */
 :root {
-  --primary-color: #1e293b; /* Elegant Slate Blue */
-  --accent-color: #0f766e; /* Dark Teal Accent */
-  --accent-light: #f0fdfa; /* Soft Light Teal background */
-  --text-main: #334155; /* Charcoal text for optimal readability */
-  --text-dark: #0f172a; /* Near black for headers */
-  --text-muted: #64748b; /* Cool grey for metadata */
-  --border-color: #e2e8f0; /* Light grey borders */
-  --bg-main: #f8fafc; /* Light slate canvas background */
-  --bg-card: #ffffff; /* Crisp white card background */
-  --font-primary: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --ink: #0f172a;
+  --text: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --accent: #0f766e;
+  --accent-soft: #f0fdfa;
+  --bg: #f1f5f9;
+  --paper: #ffffff;
+  --side: #f8fafc;
+  --font:
+    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* ==========================================================================
-   RESET & BASE STYLES
-   ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+[hidden] {
+  display: none !important;
+}
 
 body {
-  font-family: var(--font-primary);
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  line-height: 1.6;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 15px;
+  padding: 32px 16px 48px;
   -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--accent-color);
+  color: var(--accent);
   text-decoration: none;
-  transition: var(--transition-smooth);
 }
-
 a:hover {
-  color: var(--primary-color);
   text-decoration: underline;
 }
-
-/* ==========================================================================
-   INTERACTIVE CONTROLS (Web Only)
-   ========================================================================== */
-.controls-container {
-  width: 100%;
-  max-width: 1100px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
-
-.btn-print {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--primary-color);
-  color: #ffffff;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-family: var(--font-primary);
+strong,
+b {
+  color: var(--ink);
   font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-smooth);
+}
+ul {
+  list-style: none;
 }
 
-.btn-print:hover {
-  background-color: var(--accent-color);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.btn-print .icon {
-  width: 18px;
-  height: 18px;
-}
-
-.btn-lang {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--bg-card);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-smooth);
-}
-
-.btn-lang:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-  background-color: var(--accent-light);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-  text-decoration: none;
-}
-
-.btn-lang .icon {
-  width: 18px;
-  height: 18px;
-}
-
-/* ==========================================================================
-   RESUME CONTAINER & 2-COLUMN LAYOUT
-   ========================================================================== */
-.resume-container {
-  width: 100%;
-  max-width: 1100px;
-  background-color: var(--bg-card);
-  border-radius: 20px;
-  box-shadow: var(--shadow-lg);
-  padding: 40px;
-  border: 1px solid var(--border-color);
-  position: relative;
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
   overflow: hidden;
 }
+.ico {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-.resume-layout {
+/* ---------- Toolbar (chỉ hiện trên web) ---------- */
+.toolbar {
+  max-width: 1000px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font: 600 14px var(--font);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--text);
+  cursor: pointer;
+}
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+/* ---------- Giấy A4 ---------- */
+.resume {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.page {
+  padding: 32px;
+}
+.page + .page {
+  border-top: 1px dashed var(--line);
+}
+.page-1 {
   display: grid;
-  grid-template-columns: 310px 1fr;
-  gap: 40px;
+  grid-template-columns: 290px 1fr;
+  gap: 28px;
   align-items: start;
 }
 
-/* ==========================================================================
-   SIDEBAR STYLING (Left Column)
-   ========================================================================== */
-.resume-sidebar {
-  background-color: var(--bg-main);
-  border-radius: 16px;
-  padding: 30px 24px;
-  border: 1px solid var(--border-color);
+/* ---------- Sidebar ---------- */
+.side {
+  position: sticky;
+  top: 10px;
+  background: var(--side);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 18px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 20px;
 }
-
-.sidebar-avatar {
-  display: flex;
-  justify-content: center;
-}
-
-.avatar-wrapper {
+.avatar {
   width: 140px;
   height: 140px;
-  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1000px;
+  flex-shrink: 0;
   overflow: hidden;
-  border: 4px solid var(--accent-color);
-  box-shadow: var(--shadow-md);
-  background-color: var(--accent-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-smooth);
-}
-
-.avatar-wrapper:hover {
-  transform: scale(1.03);
-  box-shadow: var(--shadow-lg);
-}
-
-.avatar-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.avatar-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: white;
+  border: 3px solid var(--accent);
+  margin: 0 auto;
+  background: white;
 }
-
-.avatar-placeholder img {
+.avatar img {
   width: 120%;
   height: 120%;
   object-fit: contain;
+  display: block;
 }
-
-.sidebar-header {
+.who {
   text-align: center;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
 }
-
-.candidate-name {
-  font-size: 2.1rem;
+.name {
+  font-size: 1.9rem;
   font-weight: 800;
-  color: var(--text-dark);
-  line-height: 1.15;
-  margin-bottom: 6px;
-  letter-spacing: -0.5px;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.4px;
 }
-
-.candidate-title {
-  font-size: 1.05rem;
+.role {
+  margin-top: 4px;
   font-weight: 600;
-  color: var(--accent-color);
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
+  color: var(--accent);
+  font-size: 1.02rem;
 }
-
-/* Sidebar Section Titles */
-.sidebar-section-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--accent-color);
-  letter-spacing: 0.5px;
-}
-
-.sidebar-section-title .title-icon {
+.status {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: var(--accent-color);
-  width: 20px;
-  height: 20px;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid #99f6e4;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
 }
 
-/* Contact List in Sidebar */
-.contact-list {
+.side h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.contact {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 9px;
+  font-size: 0.85rem;
 }
-
-.contact-item {
+.contact li {
   display: flex;
+  gap: 10px;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 0.92rem;
-}
-
-.contact-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--accent-color);
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-
-.contact-text {
-  display: flex;
-  flex-direction: column;
   word-break: break-word;
 }
-
-.contact-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
-  margin-bottom: 1px;
+.contact .ico {
+  color: var(--accent);
+  margin-top: 3px;
 }
-
-.contact-value {
-  color: var(--text-dark);
+.contact a,
+.contact span {
+  color: var(--ink);
   font-weight: 500;
-  font-size: 0.92rem;
-  line-height: 1.4;
+}
+.contact a {
+  color: var(--accent);
 }
 
-a.contact-value {
-  color: var(--accent-color);
-  transition: var(--transition-smooth);
-}
-
-a.contact-value:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
-}
-
-/* Sidebar Skills */
-.sidebar-skills {
+.skills {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
-
-.sidebar-skills .skill-card {
-  background-color: var(--bg-card);
-  padding: 16px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  transition: var(--transition-smooth);
-}
-
-.sidebar-skills .skill-card:hover {
-  border-color: var(--accent-color);
-  box-shadow: var(--shadow-sm);
-  transform: translateY(-2px);
-}
-
-.sidebar-skills .skill-category {
-  font-size: 0.98rem;
+.skills dt {
   font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 8px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 4px;
+  color: var(--accent);
+  font-size: 0.92rem;
 }
-
-.sidebar-skills .skill-details {
+.skills dd {
   font-size: 0.88rem;
-  color: var(--text-main);
   line-height: 1.5;
 }
 
-.sidebar-skills .skill-note {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-top: 6px;
-  font-style: italic;
-}
-
-/* ==========================================================================
-   MAIN CONTENT STYLING (Right Column)
-   ========================================================================== */
-.resume-main {
+/* ---------- Cột chính ---------- */
+.main {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 22px;
+  min-width: 0;
 }
-
-.resume-section {
-  margin-bottom: 0;
-}
-
-.section-title {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 8px;
-}
-
-.title-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent-color);
-  width: 24px;
-  height: 24px;
-}
-
-.section-content {
-  padding-left: 10px;
-}
-
-.objective-box {
-  background-color: var(--accent-light);
-  border-left: 4px solid var(--accent-color);
-  padding: 20px 24px;
-  border-radius: 0 12px 12px 0;
-}
-
-.summary-text {
-  font-size: 1.02rem;
-  color: var(--text-main);
-  line-height: 1.65;
-  text-align: justify;
-}
-
-/* Work Experience - Timeline Style */
-.timeline {
-  position: relative;
-  border-left: 2px solid var(--border-color);
-  padding-left: 20px;
-}
-
-.timeline-item {
-  position: relative;
-  padding-left: 14px;
-  margin-bottom: 35px;
-}
-
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -27px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--bg-card);
-  border: 3px solid var(--accent-color);
-  transition: var(--transition-smooth);
-}
-
-.timeline-item:hover::before {
-  background-color: var(--accent-color);
-  transform: scale(1.25);
-}
-
-.timeline-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.timeline-date {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  background-color: var(--accent-light);
-  padding: 3px 10px;
-  border-radius: 20px;
-}
-
-.company-name {
+.main h2,
+.page-2 h2 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-dark);
-}
-
-.job-role {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 10px;
-}
-
-.job-desc {
-  font-size: 0.98rem;
+  color: var(--ink);
+  padding-bottom: 6px;
   margin-bottom: 12px;
-  color: var(--text-main);
+  border-bottom: 2px solid var(--accent);
 }
 
-.project-categories-container {
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.facts div {
+  padding: 12px 16px;
+  background: var(--accent-soft);
+}
+.facts div + div {
+  border-left: 1px solid #ccfbf1;
+}
+.facts b {
+  display: block;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: var(--accent);
+  font-weight: 800;
+}
+.facts span {
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.facts a {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.summary {
+  text-align: left;
+}
+.summary p + p {
+  margin-top: 6px;
+}
+
+/* Kinh nghiệm */
+.job {
+  margin-bottom: 22px;
+  break-inside: avoid;
+}
+.job:last-child {
+  margin-bottom: 0;
+}
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.job-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.job-title span {
+  font-weight: 500;
+  color: var(--muted);
+}
+.job-date {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.job-note {
+  margin: 4px 0 6px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.bullets {
+  list-style: square;
+  padding-left: 18px;
+  margin: 6px 0;
+}
+.bullets li {
+  margin-bottom: 3px;
+  padding-left: 2px;
+}
+.bullets li::marker {
+  color: var(--accent);
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  font-size: 0.86rem;
+  margin-top: 4px;
+}
+.links b {
+  color: var(--muted);
+  font-weight: 600;
+  margin-right: 2px;
+}
+.stack {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-left: 3px solid var(--accent);
+  background: var(--side);
+  font-size: 0.86rem;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Sản phẩm cá nhân */
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.project {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+  background: var(--side);
+  break-inside: avoid;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 15px;
-  background-color: var(--bg-main);
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
 }
-
-.project-categories-container p {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 2px;
-}
-
-.project-categories-container .project-links {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 5px;
-}
-
-.project-links {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 15px;
-  margin-bottom: 15px;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed var(--border-color);
-}
-
-.project-links li {
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.project-links li::before {
-  content: "🔗";
-  font-size: 0.8rem;
-}
-
-.job-tasks {
-  margin-bottom: 15px;
-}
-
-.job-tasks p {
-  font-size: 0.95rem;
-  margin-bottom: 6px;
-  color: var(--text-dark);
-}
-
-.job-tasks ul {
-  list-style-type: square;
-  padding-left: 20px;
-}
-
-.job-tasks li {
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-  color: var(--text-main);
-}
-
-.tech-stack {
-  background-color: var(--bg-main);
-  color: var(--text-dark);
-  border-left: 3px solid #0f766e !important;
-  padding-left: 10px;
-}
-
-/* Project Cards */
-.project-card {
-  background-color: var(--bg-main);
-  padding: 25px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 20px;
-  transition: var(--transition-smooth);
-}
-
-.project-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-color);
-}
-
-.project-header {
+.project-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: wrap;
 }
-
 .project-name {
-  font-size: 1.25rem;
+  font-size: 1.12rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--ink);
 }
-
-.btn-project-link {
-  display: inline-flex;
-  align-items: center;
-  background-color: var(--accent-color);
-  color: #ffffff;
-  padding: 6px 12px;
+.btn-demo {
+  background: var(--accent);
+  color: #fff;
+  padding: 5px 12px;
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 600;
-  transition: var(--transition-smooth);
 }
-
-.btn-project-link:hover {
-  background-color: var(--primary-color);
-  color: #ffffff;
+.btn-demo:hover {
+  background: var(--ink);
+  color: #fff;
   text-decoration: none;
 }
-
-.project-overview {
-  font-size: 0.98rem;
-  color: var(--text-main);
-  margin-bottom: 15px;
-}
-
-.project-features {
-  margin-bottom: 15px;
-}
-
-strong {
-  color: black;
-}
-
-.project-account {
-  display: flex;
-  gap: 15px;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-  border-bottom: 1px dashed var(--border-color);
-}
-
-.project-account-item {
-  flex: 1;
-}
-
-.project-features p {
+.project p.lead {
   font-size: 0.95rem;
+}
+.account {
+  font-size: 0.84rem;
+  border: 1px dashed #94a3b8;
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: var(--paper);
+}
+.account b {
+  color: var(--muted);
   font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 6px;
+}
+.account code {
+  font: inherit;
+  color: var(--ink);
 }
 
-.project-features ul {
-  list-style-type: square;
-  padding-left: 20px;
+.page-2 section + section {
+  margin-top: 22px;
 }
 
-.project-features li {
-  font-size: 0.95rem;
-  margin-bottom: 5px;
-  color: var(--text-main);
-}
-
-/* Footer */
-.resume-footer {
+.foot {
   text-align: center;
-  border-top: 1px solid var(--border-color);
-  padding-top: 20px;
-  margin-top: 40px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding: 14px;
+  border-top: 1px solid var(--line);
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN (Screen)
-   ========================================================================== */
-@media (max-width: 900px) {
+/* ---------- Mobile ---------- */
+@media screen and (max-width: 860px) {
   body {
-    padding: 20px 10px;
+    padding: 12px 8px 32px;
   }
-
-  .controls-container {
-    max-width: 100%;
+  .page {
+    padding: 18px;
   }
-
-  .resume-container {
-    padding: 24px 18px;
-    border-radius: 12px;
-  }
-
-  .resume-layout {
+  .page-1 {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 22px;
   }
-
-  .resume-sidebar {
-    padding: 24px 18px;
+  .facts {
+    grid-template-columns: 1fr;
   }
-
-  .section-content {
-    padding-left: 0;
+  .facts div + div {
+    border-left: 0;
+    border-top: 1px solid #ccfbf1;
   }
-
-  .timeline {
-    border-left: none;
-    padding-left: 0;
-  }
-
-  .timeline-item {
-    padding-left: 0;
-  }
-
-  .timeline-item::before {
-    display: none;
-  }
-
-  .timeline-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    margin-bottom: 10px;
+  .projects {
+    grid-template-columns: 1fr;
   }
 }
 
-/* ==========================================================================
-   PRINT STYLES (Cmd + P Optimization)
-   ========================================================================== */
+.my-skill-item:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.my-skill-tt {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.my-skill-desc {
+  /* color: var(--muted); */
+  font-size: 0.92rem;
+  color: black;
+  font-weight: 400;
+}
+
+.skill-rows {
+  display: grid;
+  gap: 10px;
+}
+.skill-rows > div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+.skill-rows dt {
+  font-weight: 700;
+  color: var(--accent);
+}
+.skill-rows dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.skill-rows i {
+  font-style: normal;
+  font-size: 0.85rem;
+  padding: 2px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--side);
+  color: var(--ink);
+}
+@media screen and (max-width: 860px) {
+  .skill-rows > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+@media print {
+  .skill-rows i {
+    font-size: 7.6pt;
+    padding: 1px 7px;
+  }
+  .skill-rows dt {
+    font-size: 8.4pt;
+  }
+}
+
+/* ---------- In / Lưu PDF: đúng 2 trang A4, không header/footer trình duyệt ---------- */
 @media print {
   @page {
     size: A4;
-    margin: 12mm 12mm 12mm 12mm;
-  }
-
-  body {
-    background-color: #ffffff;
-    color: #000000;
-    padding: 0;
     margin: 0;
-    width: 100%;
-    font-size: 9.5pt;
   }
-
-  .no-print {
+  html,
+  body {
+    background: #fff;
+  }
+  body {
+    padding: 0;
+    font-size: 9.2pt;
+    line-height: 1.45;
+    color: #1e293b;
+  }
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .no-print,
+  .foot {
     display: none !important;
   }
-
-  .resume-container {
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    background: transparent;
-    width: 100%;
-    max-width: 100%;
+  .resume {
+    max-width: none;
+    border: 0;
+    border-radius: 0;
   }
-
-  .resume-layout {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 24px;
+  .page {
+    width: 210mm;
+    min-height: 296mm;
+    padding: 11mm 12mm;
+    break-after: page;
+    border: 0 !important;
   }
-
-  .resume-sidebar {
-    background-color: #f8fafc !important;
-    border-radius: 14px !important;
-    padding: 20px 16px !important;
-    border: 1px solid #e2e8f0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
+  .page:last-child {
+    break-after: auto;
   }
-
-  .sidebar-avatar {
-    display: flex !important;
-    justify-content: center !important;
+  .page-1 {
+    grid-template-columns: 62mm 1fr;
+    gap: 8mm;
   }
-
-  .avatar-wrapper {
-    width: 115px !important;
-    height: 115px !important;
-    border-radius: 50% !important;
-    border: 3px solid #0f766e !important;
-    background-color: #f0fdfa !important;
-    box-shadow: none !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
+  .side {
+    padding: 14px 12px;
+    gap: 14px;
   }
-
-  .sidebar-header {
-    text-align: center !important;
-    padding-bottom: 14px !important;
-    border-bottom: 1px solid #e2e8f0 !important;
+  .avatar {
+    width: 28mm;
+    height: 28mm;
   }
-
-  .candidate-name {
-    font-size: 17pt !important;
-    font-weight: 800 !important;
-    color: #0f172a !important;
-    line-height: 1.15 !important;
-    margin-bottom: 4px !important;
+  .name {
+    font-size: 18pt;
   }
-
-  .candidate-title {
-    font-size: 9.5pt !important;
-    font-weight: 600 !important;
-    color: #0f766e !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .sidebar-section-title {
-    font-size: 10pt !important;
-    font-weight: 700 !important;
-    color: #0f172a !important;
-    text-transform: uppercase !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    margin-bottom: 12px !important;
-    padding-bottom: 6px !important;
-    border-bottom: 2px solid #0f766e !important;
-    letter-spacing: 0.5px !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .sidebar-section-title .title-icon {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 16px !important;
-    height: 16px !important;
-    color: #0f766e !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .contact-list {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-
-  .contact-item {
-    display: flex !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-    font-size: 8.2pt !important;
-  }
-
-  .contact-icon {
-    width: 14px !important;
-    height: 14px !important;
-    color: #0f766e !important;
-    flex-shrink: 0 !important;
-    margin-top: 2px !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .contact-label {
-    font-size: 6.8pt !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    color: #64748b !important;
-    letter-spacing: 0.5px !important;
-    margin-bottom: 1px !important;
-  }
-
-  .contact-value {
-    color: #0f172a !important;
-    font-weight: 500 !important;
-    font-size: 8.2pt !important;
-  }
-
-  a.contact-value {
-    color: #0f766e !important;
-  }
-
-  .sidebar-skills {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-
-  .sidebar-skills .skill-card {
-    background-color: #ffffff !important;
-    padding: 10px 12px !important;
-    border-radius: 8px !important;
-    border: 1px solid #e2e8f0 !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .sidebar-skills .skill-category {
-    font-size: 8.8pt !important;
-    font-weight: 700 !important;
-    color: #0f766e !important;
-    margin-bottom: 4px !important;
-    border-bottom: 1px solid #e2e8f0 !important;
-    padding-bottom: 3px !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .sidebar-skills .skill-details {
-    font-size: 7.8pt !important;
-    color: #334155 !important;
-    line-height: 1.4 !important;
-  }
-
-  .sidebar-skills .skill-note {
-    display: block !important;
-    font-size: 7.2pt !important;
-    color: #64748b !important;
-    margin-top: 4px !important;
-    font-style: italic !important;
-  }
-
-  .resume-main {
-    gap: 20px;
-  }
-
-  .objective-box {
-    background-color: #f0fdfa !important;
-    border-left: 4px solid #0f766e !important;
-    padding: 14px 18px !important;
-    border-radius: 0 8px 8px 0 !important;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .section-title {
-    font-size: 11.5pt;
-    border-bottom: 1.5pt solid #0f766e;
-    padding-bottom: 4px;
-    margin-bottom: 10px;
-    color: #0f172a;
-    page-break-after: avoid;
-    break-after: avoid;
-  }
-
-  .title-icon {
-    display: none;
-  }
-
-  .section-content {
-    padding-left: 0;
-  }
-
-  .summary-text {
-    font-size: 9pt;
-    line-height: 1.6;
-  }
-
-  .timeline {
-    border-left: none;
-    padding-left: 0;
-  }
-
-  .timeline-item {
-    padding-left: 0;
-    margin-bottom: 16px;
-  }
-
-  .timeline-item::before {
-    display: none;
-  }
-
-  .timeline-meta {
-    margin-bottom: 4px;
-  }
-
-  .timeline-date {
-    background-color: #f0fdfa !important;
-    color: #0f766e !important;
-    border: none;
-    font-size: 8pt;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 12px;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  .company-name {
-    font-size: 10.5pt;
-  }
-
-  .job-role {
+  .role {
     font-size: 10pt;
-    margin-bottom: 4px;
   }
-
-  .project-categories-container {
-    background-color: #f8fafc !important;
-    padding: 10px 12px;
-    border-radius: 6px;
-    border: 1px solid #e2e8f0;
-    margin-bottom: 8px;
-    gap: 4px;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
+  .status {
+    font-size: 7.6pt;
   }
-
-  .project-categories-container p {
-    font-size: 8.5pt;
-    margin-bottom: 2px;
+  .side h2 {
+    font-size: 9.5pt;
   }
-
-  .project-categories-container .project-links {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 4px;
-  }
-
-  .project-links {
-    gap: 4px 10px;
-    margin-bottom: 6px;
-    padding-bottom: 4px;
-  }
-
-  .project-links li::before {
-    content: "";
-  }
-
-  .tech-stack {
-    background-color: #f8fafc !important;
-    border-left: 3px solid #0f766e !important;
-    padding: 6px 10px;
+  .contact {
     font-size: 8pt;
-    border-radius: 4px;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
+    gap: 7px;
   }
-
-  .project-card {
-    background-color: #f8fafc !important;
-    padding: 14px 16px;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    margin-bottom: 15px;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
+  .ico {
+    width: 12px;
+    height: 12px;
   }
-
-  .project-header {
-    margin-bottom: 6px;
+  .skills dt {
+    font-size: 8.4pt;
   }
-
+  .skills dd {
+    font-size: 8pt;
+  }
+  .main {
+    gap: 14px;
+  }
+  .main h2,
+  .page-2 h2 {
+    font-size: 11pt;
+    margin-bottom: 8px;
+  }
+  .facts b {
+    font-size: 12.5pt;
+  }
+  .facts span {
+    font-size: 7.8pt;
+  }
+  .facts div {
+    padding: 8px 12px;
+  }
+  .job {
+    margin-bottom: 14px;
+  }
+  .job-title {
+    font-size: 10pt;
+  }
+  .job-date {
+    font-size: 8pt;
+  }
+  .job-note {
+    font-size: 8.4pt;
+  }
+  .links {
+    font-size: 7.8pt;
+  }
+  .stack {
+    font-size: 7.8pt;
+  }
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .project {
+    padding: 12px 14px;
+    gap: 6px;
+  }
   .project-name {
     font-size: 10.5pt;
   }
-
-  .btn-project-link {
-    background-color: #0f766e !important;
-    color: #ffffff !important;
-    border: none;
-    padding: 3px 8px;
-    font-size: 7.5pt;
-    border-radius: 4px;
-    print-color-adjust: exact !important;
-    -webkit-print-color-adjust: exact !important;
+  .btn-demo {
+    padding: 2px 8px;
+    font-size: 7.6pt;
   }
-
-  .project-overview {
-    font-size: 8.5pt;
-    margin-bottom: 6px;
+  .project p.lead {
+    font-size: 9.2pt;
   }
-
-  .project-features {
-    margin-bottom: 6px;
+  .account {
+    font-size: 8.2pt;
   }
-
-  .project-features p {
-    font-size: 8.5pt;
-    margin-bottom: 2px;
-  }
-
-  .project-features li {
-    font-size: 8pt;
-    margin-bottom: 2px;
-  }
-
-  .resume-footer {
-    margin-top: 15px;
-    padding-top: 8px;
-    font-size: 7.5pt;
+  a {
+    color: var(--accent);
+    text-decoration: none;
   }
 }
